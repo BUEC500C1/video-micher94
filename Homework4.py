@@ -47,8 +47,8 @@ def main(keyword):
 			makeimage(i,j,tweet)
 			j=j+1
 			result.append(tweet)
-		#q.queuedown()
-		#q.queuelist()
+		q.queuedown()
+		q.queuelist()
 		i = i+1
 		print("I am here")
 		subprocess.call(['ffmpeg', '-framerate', '.1', '-i', filename, videoname])

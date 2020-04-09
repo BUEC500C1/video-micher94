@@ -48,7 +48,7 @@ def main(keyword):
 		i = i+1
 		print("I am here")
 		subprocess.call(['ffmpeg', '-framerate', '.1', '-i', filename, videoname])
-	return keyword
+	return print("these are your tweets", tweets)
 
 
 

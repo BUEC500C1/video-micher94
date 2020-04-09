@@ -10,6 +10,12 @@ app = Flask(__name__)
 
 
 @app.route('/starthere/<keyword>')
+
+def outout(keyword, tweets):
+	print("These are the tweets for ", keyword)
+	for tweet in tweets:
+		print(tweet)
+
 def main(keyword):
 
 	# get keys
@@ -48,7 +54,7 @@ def main(keyword):
 		i = i+1
 		print("I am here")
 		subprocess.call(['ffmpeg', '-framerate', '.1', '-i', filename, videoname])
-	return print('These are the tweets for ', keyword, "\n", tweets)
+	return outout(keyword, tweets)
 
 
 

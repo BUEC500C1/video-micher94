@@ -11,10 +11,6 @@ app = Flask(__name__)
 
 @app.route('/starthere/<keyword>')
 
-def outout(keyword):
-	print("These are the tweets for ", keyword)
-	#for tweet in tweets:
-	#	print(tweet)
 
 def main(keyword):
 
@@ -40,6 +36,7 @@ def main(keyword):
 	print(q.queuelength())
 
 	i = 0
+	result=[]
 	filename = str(i) + "-%01d.png"
 	videoname = keyword+".avi"
 	while q.queuelength()>0:
@@ -49,13 +46,14 @@ def main(keyword):
 			print(tweet)
 			makeimage(i,j,tweet)
 			j=j+1
+			result.append(tweet)
 		#q.queuedown()
 		#q.queuelist()
 		i = i+1
 		print("I am here")
 		subprocess.call(['ffmpeg', '-framerate', '.1', '-i', filename, videoname])
 		
-	return outout(keyword)
+	return keyword, tweets
 
 
 

@@ -5,14 +5,11 @@ from readtweets import readtweets
 from Queue import Queue
 import configparser
 import subprocess
-from flask import Flask
-app = Flask(__name__)
+
+def main():
 
 
-@app.route('/starthere/<keyword>')
-
-
-def main(keyword):
+	keyword = sys.argv[1]
 
 	# get keys
 	# config = configparser.ConfigParser()
@@ -39,23 +36,19 @@ def main(keyword):
 	result=[]
 	filename = str(i) + "-%01d.png"
 	videoname = keyword+".avi"
-	while q.queuelength()>0:
-		tweets = readtweets(q.items[0],consumer_key,consumer_secret)
-		j = 0
-		for tweet in tweets:
-			print(tweet)
-			makeimage(i,j,tweet)
-			j=j+1
-			result.append(tweet)
-		q.queuedown()
-		q.queuelist()
-		i = i+1
-		print("I am here")
-		subprocess.call(['ffmpeg', '-framerate', '.1', '-i', filename, videoname])
+	tweets = readtweets(q.items[0],consumer_key,consumer_secret)
+	print(len(tweets))
+	j = 0
+	for tweet in tweets:
+		print(tweet)
+		makeimage(i,j,tweet)
+		j=j+1
+		result.append(tweet)
+	print("I am here")
+	subprocess.call(['ffmpeg', '-framerate', '.1', '-i', filename, videoname])
 		
 	return keyword
 
 
-
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=80)
+    main()

@@ -6,10 +6,10 @@ from Queue import Queue
 import configparser
 import subprocess
 
-def main():
+def main(keyword):
 
 
-	keyword = sys.argv[1]
+	# keyword = sys.argv[1]
 
 	# get keys
 	# config = configparser.ConfigParser()
